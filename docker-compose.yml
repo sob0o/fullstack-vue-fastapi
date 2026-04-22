@@ -1,0 +1,36 @@
+services:
+  frontend:
+    build:
+      context: ./frontend
+    container_name: taskmanager_frontend
+    ports:
+      - "${FRONTEND_PORT}:5173"
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    depends_on:
+      - backend
+
+  backend:
+    build:
+      context: ./backend
+    container_name: taskmanager_backend
+    ports:
+      - "${BACKEND_PORT}:8000"
+    volumes:
+      - ./backend:/app
+    depends_on:
+      - mongodb
+
+  mongodb:
+    image: mongo:7
+    container_name: taskmanager_mongodb
+    ports:
+      - "${MONGO_PORT}:27017"
+    volumes:
+      - mongo_data:/data/db
+    environment:
+      - MONGO_INITDB_DATABASE=${MONGO_INITDB_DATABASE}
+
+volumes:
+  mongo_data:

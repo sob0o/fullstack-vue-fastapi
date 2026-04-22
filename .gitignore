@@ -1,0 +1,20 @@
+# Node
+frontend/node_modules
+frontend/dist
+
+# Python
+backend/__pycache__/
+backend/.pytest_cache/
+backend/.venv/
+
+# Environment files
+.env
+backend/.env
+frontend/.env
+
+# OS / Editor
+.DS_Store
+.vscode/
+
+# Mongo local data if ever mounted locally
+mongo_data/
